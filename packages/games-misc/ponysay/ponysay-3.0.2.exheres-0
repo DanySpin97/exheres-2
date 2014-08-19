@@ -1,5 +1,8 @@
+# Copyright 2014 Clément Delafargue <clement@delafargue.name>
+# Distributed under the terms of the GNU General Public License v3
+
 require github [ user=erkin ]
-require setup-py [ import=distutils has_bin=true multibuild=false ]
+require setup-py [ import=distutils has_bin=true multibuild=false blacklist=2 ]
 
 SUMMARY="Pony wrapper for cowsay."
 
@@ -9,10 +12,11 @@ SLOT="0"
 
 LICENCES="GPL-3"
 
-SETUP_PY_SRC_COMPILE_PARAMS=("--freedom=partial")
+SETUP_PY_SRC_INSTALL_PARAMS=( ---DESTDIR="$IMAGE" )
+SETUP_PY_SRC_COMPILE_PARAMS=( --freedom=partial )
 
 setup-py_install_one_multibuild() {
-    edo $PYTHON -B setup.py install ---PREFIX=/usr ---DESTDIR="$IMAGE" ${SETUP_PY_SRC_COMPILE_PARAMS[@]}
+    edo $PYTHON -B setup.py install ---PREFIX=/usr ${SETUP_PY_SRC_INSTALL_PARAMS[@]} ${SETUP_PY_SRC_COMPILE_PARAMS[@]}
     edo rmdir "$IMAGE"/var/{cache/{ponysay,},}
     emagicdocs
 }
