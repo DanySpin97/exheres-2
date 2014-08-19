@@ -1,0 +1,18 @@
+require github [ user=erkin ]
+require setup-py [ import=distutils has_bin=true multibuild=false ]
+
+SUMMARY="Pony wrapper for cowsay."
+
+PLATFORMS="~amd64"
+
+SLOT="0"
+
+LICENCES="GPL-3"
+
+SETUP_PY_SRC_COMPILE_PARAMS=("--freedom=partial")
+
+setup-py_install_one_multibuild() {
+    edo $PYTHON -B setup.py install ---PREFIX=/usr ---DESTDIR="$IMAGE" ${SETUP_PY_SRC_COMPILE_PARAMS[@]}
+    edo rmdir "$IMAGE"/var/{cache/{ponysay,},}
+    emagicdocs
+}
