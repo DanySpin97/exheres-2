@@ -3,9 +3,8 @@
 
 require sourceforge
 
-SLOT="0"
 SUMMARY="ncurses based file manager with vi like keybindings"
-BUGS_TO="sshilovsky@gmail.com"
+BUGS_TO="clement@delafargue.name"
 LICENCES="GPL-2"
 
 DEPENDENCIES="
