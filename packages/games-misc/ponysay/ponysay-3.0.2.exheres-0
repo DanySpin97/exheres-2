@@ -15,7 +15,7 @@ LICENCES="GPL-3"
 SETUP_PY_SRC_COMPILE_PARAMS=( --freedom=partial )
 
 setup-py_install_one_multibuild() {
-    edo $PYTHON -B setup.py install ---DESTDIR="$IMAGE" ---PREFIX=/usr "${SETUP_PY_SRC_COMPILE_PARAMS[@]}"
-    edo rmdir "$IMAGE"/var/{cache/{ponysay,},}
+    edo $PYTHON -B setup.py install ---DESTDIR="${IMAGE}" ---PREFIX=/usr "${SETUP_PY_SRC_COMPILE_PARAMS[@]}"
+    edo rmdir "${IMAGE}"/var/{cache/{ponysay,},}
     emagicdocs
 }
