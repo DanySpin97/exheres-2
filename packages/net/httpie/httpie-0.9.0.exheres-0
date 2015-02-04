@@ -1,0 +1,16 @@
+# Copyright 2015 Clément Delafargue <clement@delafargue.name>
+# Distributed under the terms of the GNU General Public License v2
+
+require httpie
+
+DEPENDENCIES="
+    build+run:
+        dev-python/requests[>=2.3.0]
+        dev-python/Pygments[>=1.5]
+"
+
+# Most of its test dependencies are not packaged
+RESTRICT="test"
+
+PLATFORMS="~amd64"
+
