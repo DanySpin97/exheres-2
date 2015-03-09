@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require pypi github [ user=jakubroztocil ]
-require setup-py [ import=setuptools blacklist=none has_bin=true ]
+require setup-py [ import=setuptools blacklist="2 3.1 3.2" has_bin=true ]
 
 SUMMARY="HTTPie is a command line HTTP client, a user-friendly cURL replacement. http://httpie.org"
 
