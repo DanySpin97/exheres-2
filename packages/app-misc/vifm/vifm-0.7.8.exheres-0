@@ -1,0 +1,7 @@
+# Copyright 2014 Vadim Intelegator <intelegator@gmail.com>
+# Distributed under the terms of GNU General Public License v2
+
+require vifm
+
+PLATFORMS="~amd64"
+

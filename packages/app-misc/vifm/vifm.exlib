@@ -1,13 +1,50 @@
+# Copyright 2015 Vadim Intelegator <intelegator@gmail.com>
 # Copyright 2012 Sergei Shilovsky <sshilovsky@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 require sourceforge
 
-SUMMARY="ncurses based file manager with vi like keybindings"
-BUGS_TO="clement@delafargue.name"
-LICENCES="GPL-2"
+export_exlib_phases src_configure src_test
+
+SUMMARY="Console file manager with vi(m)-like keybindings"
+DESCRIPTION="
+Vifm is an ncurses based file manager with vi like keybindings/modes/options/commands/configuration,
+which also borrows some useful ideas from mutt. If you use vi, vifm gives you complete keyboard control
+over your files without having to learn a new set of commands.
+"
+
+MYOPTIONS="
+    gtk
+    magic [[ description = [ Adds support for determine mimetypes if available ] ]]
+    X
+"
 
 DEPENDENCIES="
     build+run:
+        X? ( x11-libs/libX11 )
+        dev-libs/glib:2
+        gtk? ( x11-libs/gtk+:2 )
+        magic? ( sys-apps/file )
         sys-libs/ncurses
 "
+
+vifm_src_configure() {
+    local args=(
+        $(option_with gtk)
+        $(option_with magic libmagic)
+        $(option_with X X11)
+        --enable-desktop-files
+        --enable-extended-keys
+        --with-curses-name=ncursesw
+        --with-curses=/lib64
+        --with-dyn-X11
+    )
+
+    econf "${args[@]}"
+}
+
+vifm_src_test() {
+    # TODO: gmake writes files on --dry-run
+    make check
+}
+
