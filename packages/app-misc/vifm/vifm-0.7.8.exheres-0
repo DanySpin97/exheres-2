@@ -5,3 +5,5 @@ require vifm
 
 PLATFORMS="~amd64"
 
+SLOT="0"
+
