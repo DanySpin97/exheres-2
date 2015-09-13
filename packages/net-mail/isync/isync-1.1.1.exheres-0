@@ -8,14 +8,14 @@ SUMMARY="Command line application which synchronizes mailboxes"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="providers: libressl openssl"
+MYOPTIONS="providers: libressl openssl [[ number-selected = exactly-one ]]"
 
 DEPENDENCIES="
     build:
         dev-util/pkg-config
     build+run:
         sys-libs/db:=[>=4.2]
-        providers:libressl? ( dev-libs/libressl )
+        providers:libressl? ( dev-libs/libressl:= )
         providers:openssl? ( dev-libs/openssl )
 "
 
